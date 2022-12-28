@@ -1,0 +1,12 @@
+#!/bin/sh
+
+romName="fourswords"
+
+echo =========================================
+echo                 Compressing
+echo =========================================
+cp assets/misc/$romName.png .
+zip assets/misc/data/$romName.zip $romName.gba $romName.png
+rm $romName.png
+rm $romName.gba
+#mv $romName.zip /var/www/website/store/items/gba/homebrew

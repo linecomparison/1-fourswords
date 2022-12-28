@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "2.0.0",
+    "configurations": [
+    
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "gdb-debug",
+            "postDebugTask": "stop emulation",
+            "serverLaunchTimeout": 10000,
+            "stopAtEntry": false,
+            "program": "${workspaceFolder}/fourswords.elf",
+            "MIMode": "gdb",
+            "externalConsole": true,
+            "cwd": "${workspaceFolder}",
+            "targetArchitecture": "arm",
+            "miDebuggerServerAddress": "localhost:2345",
+            "windows": {
+                "miDebuggerPath": "c:/devkitpro/devkitARM/bin/arm-none-eabi-gdb.exe",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "ignoreFailures": true,
+                        "text": "${workspaceFolder}/fourswords.elf -enable-pretty-printing"
+                    }
+                ]
+            },
+        }
+    ]
+}

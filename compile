@@ -1,0 +1,7 @@
+#!/bin/sh
+clear
+
+./assets/misc/make/shell/textures
+./assets/misc/make/shell/mk
+./assets/misc/make/shell/patch
+./assets/misc/make/shell/compress

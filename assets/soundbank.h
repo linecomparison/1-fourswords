@@ -1,0 +1,7 @@
+#define MOD_01_GORON	0
+#define SFX_MENU_CURSOR	16
+#define SFX_MENU_ERROR	17
+#define SFX_MENU_SELECT	18
+#define MSL_NSONGS	1
+#define MSL_NSAMPS	19
+#define MSL_BANKSIZE	20

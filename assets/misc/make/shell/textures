@@ -1,0 +1,36 @@
+#!/bin/sh
+
+echo =========================================
+echo                 Compiling Textures
+echo =========================================
+
+
+mkdir assets/gfx/resources
+
+echo compiling sprites...
+for sprite in $(cat assets/misc/data/lists/tex.spr)
+do /opt/devkitpro/tools/bin/grit assets/gfx/sprites/$sprite.png -ff assets/misc/data/grit/$sprite.grit -o assets/gfx/resources/spriteMaps
+done
+
+echo compiling tilesets... 
+for tileset in $(cat assets/misc/data/lists/tex.til)
+do /opt/devkitpro/tools/bin/grit assets/gfx/tilesets/$tileset.png -ff assets/misc/data/grit/$tileset.grit -o assets/gfx/resources/tileSets
+done
+
+
+#/opt/devkitpro/tools/bin/grit assets/gfx/sprites/link.png -ff assets/gfx/sprites/grit/link.grit -o assets/gfx/resources/spriteMaps
+#/opt/devkitpro/tools/bin/grit assets/gfx/sprites/cursor.png -ff assets/gfx/sprites/grit/cursor.grit -o assets/gfx/resources/spriteMaps
+
+
+#/opt/devkitpro/tools/bin/grit assets/gfx/tilesets/house2.png -ff assets/gfx/tilesets/grit/house2.grit -o assets/gfx/resources/tileSets
+#/opt/devkitpro/tools/bin/grit assets/gfx/tilesets/pause.png -ff assets/gfx/tilesets/grit/pause.grit -o assets/gfx/resources/tileSets
+
+for source in $(ls assets/gfx/resources | grep .c)
+do mv assets/gfx/resources/$source source/resources
+done
+
+for header in $(ls assets/gfx/resources | grep .h)
+do mv assets/gfx/resources/$header assets/include/resources
+done
+
+rm assets/gfx/resources -r

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo =========================================
+echo                 Patching Header
+echo =========================================
+
+cp assets/misc/patches/header.ips .
+mono /opt/devkitpro/tools/bin/liteips.exe header.ips fourswords.gba
+rm header.ips

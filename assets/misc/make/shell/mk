@@ -1,0 +1,16 @@
+#!/bin/sh
+romName="fourswords"
+
+echo =========================================
+echo                 Compiling Game
+echo =========================================
+
+cp assets/misc/make/Makefile .
+
+make clean
+make
+
+rm Makefile
+cp build/soundbank.h assets/soundbank.h
+rm build -r
+rm $romName.elf

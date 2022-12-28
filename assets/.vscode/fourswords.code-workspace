@@ -1,0 +1,52 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"sprites.h": "c",
+			"font.h": "c",
+			"m_directory.h": "c",
+			"link.h": "c",
+			"input.h": "c",
+			"v_m3.h": "c",
+			"thread": "c",
+			"xlocale": "c",
+			"memory": "cpp",
+			"optional": "cpp",
+			"random": "cpp",
+			"charconv": "c",
+			"fstream": "c",
+			"xhash": "c",
+			"xlocbuf": "c",
+			"*.tcc": "c",
+			"map": "cpp",
+			"stdlib.h": "c",
+			"video.h": "c",
+			"m_map.h": "c",
+			"audio.h": "c",
+			"interrupts.h": "c",
+			"maxmod.h": "c",
+			"types.h": "c",
+			"tilemaps.h": "c",
+			"shared.h": "c",
+			"main.h": "c",
+			"systemcalls.h": "c",
+			"m_sprites.h": "c",
+			"custompalettes.h": "c",
+			"spritemaps.h": "c",
+			"structs.h": "c",
+			"enums.h": "c",
+			"m_audio.h": "c",
+			"macros.h": "c",
+			"size_defines.h": "c",
+			"base.h": "c",
+			"tilesets.h": "c",
+			"data.h": "c",
+			"sound.h": "c",
+			"context.h": "c"
+		},
+	}
+}

@@ -7,7 +7,7 @@ echo =========================================
 
 cp assets/misc/make/Makefile .
 
-make clean
+#make clean
 make
 
 rm Makefile

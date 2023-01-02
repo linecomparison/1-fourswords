@@ -79,11 +79,13 @@ void Scrolling(){
 					break;
 
 					case 'l':
+					
 					//if(level.scrollX == 0){level.scrollX = 8;scrollBuffer++;}
 					if(scrollBufferX == 8){scrollBufferX = 0;scrollBuffer++;}
 					break;
 
 					case 'r':
+					//if(level.scrollX == 9){level.scrollX = 0;scrollBuffer++;}
 					if(scrollBufferX == 8){scrollBufferX = 0;scrollBuffer++;}
 					break;
 				}

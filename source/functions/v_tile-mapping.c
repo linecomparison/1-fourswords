@@ -507,6 +507,16 @@ void ScrollMap(unsigned short* ground, unsigned short* overhead,int scrollBuffer
 			for(int i = 0; i < 20; i++){
 
 				for(int o = 0; o < scrollBuffer; o++){
+
+					//se_mem[3][GetCoord(0 + o,i)] = se_mem[3][GetCoord(1 + scrollBuffer,i)];
+					
+					//se_mem[3][GetCoord((27) - o,i)] = se_mem[3][GetCoord(28 - o,i)];
+					//se_mem[3][GetCoord(29 - o,i)] = 0;
+					//se_mem[3][GetCoord(30,i)] = 0;
+					//se_mem[2][GetCoord(29 - o,i)] = 0;
+					
+					//se_mem[3][GetCoord(31,i)] = 0;
+					
 					se_mem[3][GetCoord((31 - scrollBuffer) + o + 1,i)] = ground[GetCoord(o,i)];
 					se_mem[2][GetCoord((31 - scrollBuffer) + o + 1,i)] = overhead[GetCoord(o,i)];
 				}

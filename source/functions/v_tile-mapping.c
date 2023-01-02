@@ -412,13 +412,125 @@ void DoorPlan(int x, int y, char orientation, unsigned short* ground, unsigned s
 	level.doorCount++;
 }
 
-//Generate a map while scrolling.
-//\param x - Test
-//\param y - Test
-//\param scrollType - either scroll constantly, or classic zelda style.
-void GenerateMap(int x,int y,int scrollType){
+void ScrollPlan(unsigned short* ground, unsigned short* overhead,int room){
+	for(int i = 0; i < 641; i++)
+	{
+		ground[i] = 0;
+		overhead[i] = 0;
+	}
+	switch(game.currentMap)
+	{
+		
+		case 1:
 
+			switch(room)
+			{
+				default:
+				Fill(0,0,0,1);
+				break;
+
+				case 0:
+				RoomPlan(0,ground);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+
+				case 1:
+				RoomPlan(0,ground);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+
+				case 2:
+				RoomPlan(0,ground);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				break;
+
+				case 3:
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+				
+				case 4:
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+
+				case 5:
+	
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(13,17, 'd', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				break;
+
+
+
+
+				case 6:
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+
+				case 7:
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				DoorPlan(27,8, 'r', ground, overhead);
+				break;
+
+				case 8:
+				RoomPlan(0,ground);
+				DoorPlan(13,0, 'u', ground, overhead);
+				DoorPlan(0,8, 'l', ground, overhead);
+				break;
+			}
+
+		break;
+	}
 }
+
+void ScrollMap(unsigned short* ground, unsigned short* overhead,int scrollBuffer,int dir){
+	//Fill(0,0,0,2);
+	switch(dir)
+	{
+		case 'r':
+		
+			for(int i = 0; i < 20; i++){
+
+				for(int o = 0; o < scrollBuffer; o++){
+					se_mem[3][GetCoord((31 - scrollBuffer) + o + 1,i)] = ground[GetCoord(o,i)];
+					se_mem[2][GetCoord((31 - scrollBuffer) + o + 1,i)] = overhead[GetCoord(o,i)];
+				}
+			}
+		
+		break;
+
+		case 'l':
+		
+			for(int i = 0; i < 20; i++){
+
+				for(int o = 0; o < scrollBuffer; o++){
+					if(scrollBuffer < 31){
+					se_mem[3][GetCoord((0 + scrollBuffer) - o - 1,i)] = ground[GetCoord(29 - o,i)];
+					se_mem[2][GetCoord((0 + scrollBuffer) - o - 1,i)] = overhead[GetCoord(29 - o,i)];
+					}
+				}
+			}
+		
+		break;
+	}
+	
+}
+
 
 //--------------------------------------------------------------------------------------------------------
 //	Draw Text

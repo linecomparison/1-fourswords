@@ -9,7 +9,7 @@
 //	+ 39 tiles not compressed
 //	Total size: 512 + 1248 = 1760
 //
-//	Time-stamp: 2022-12-28, 17:34:13
+//	Time-stamp: 2022-12-30, 23:12:16
 //	Exported by Cearn's GBA Image Transmogrifier, v0.9.2
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -37,7 +37,7 @@ extern const unsigned short house1Pal[256];
 //	+ 124 tiles not compressed
 //	Total size: 32 + 3968 = 4000
 //
-//	Time-stamp: 2022-12-28, 17:34:13
+//	Time-stamp: 2022-12-30, 23:12:16
 //	Exported by Cearn's GBA Image Transmogrifier, v0.9.2
 //	( http://www.coranac.com/projects/#grit )
 //

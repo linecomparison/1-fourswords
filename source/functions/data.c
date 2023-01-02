@@ -219,11 +219,11 @@ void SetLevel(int index,int entrance){
         break;
 		
 		case 1:
-		trackNo = -1;
+		trackNo = 0;
 		level.plrNo = 1;
-		level.botNo = 1;
+		level.botNo = 0;
 		level.mapWidth = 50;
-        level.mapHeight = 96;
+      level.mapHeight = 96;
 
 		level.screensX = 1;
 		level.screensY = 1;

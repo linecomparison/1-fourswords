@@ -15,61 +15,100 @@ char scrollDirection;
 int scrollIndexCheck = 0;
 int screenHeight = 256;
 int screenWidth = 256;
-
+int room;
 bool playerHide = false;
+
+int scrollBack;
+
+unsigned short groundScreen[640];
+unsigned short overheadScreen[640];
+void ScrollMap(unsigned short* ground, unsigned short* overhead,int scrollBuffer,int dir);
+void ScrollPlan(unsigned short* ground, unsigned short* overhead,int room);
+
 
 //Handles the scrolling of screens(Currently Under Development)
 //TODO, hide player sprite when zelda_classic scrolling, create seamless tile loading when zelda_classic scrolling.
+int scrollBuffer = 0; int scrollBufferX;
 void Scrolling(){
 	
+	//nt scrollBufferIndex = 0;
 	if(level.scrolling){
 		if(!playerHide){ HideSprite(ent[0].sprite); playerHide = true;}
 		if(scrollIndex < scrollIndexCheck){
+			
 			switch(scrollDirection){
 				case 'u':
-				level.scrollY--;
+				//level.scrollY--;
 				for(int i = 0; i != level.entNo; i++){
-					if(scrollIndex < scrollIndexCheck - 110)ent[i].local_y++;
+					//if(scrollIndex < scrollIndexCheck - 110)ent[i].local_y++;
+					
 				}
 				break;
 
 				case 'd':
-				level.scrollY++;
+				//level.scrollY++;
 				for(int i = 0; i != level.entNo; i++){
-					if(scrollIndex < scrollIndexCheck - 100)ent[i].local_y--;
+					//if(scrollIndex < scrollIndexCheck - 100)ent[i].local_y--;
 				}
 				break;
 
 				case 'l':
-				level.scrollX--;
+				//level.scrollX--;
 				for(int i = 0; i != level.entNo; i++){
-					if(scrollIndex < scrollIndexCheck)ent[i].local_x++;
+					//if(scrollIndex < scrollIndexCheck)ent[i].local_x++;
 				}
 				break;
 
 				case 'r':
-				level.scrollX++;
+				//level.scrollX++;
+				
+				//ScrollMap(groundScreen, overheadScreen,scrollBuffer,scrollDirection);
+				
 				for(int i = 0; i != level.entNo; i++){
-					if(scrollIndex < scrollIndexCheck)ent[i].local_x--;
+					//if(scrollIndex < scrollIndexCheck)ent[i].local_x--;
 				}
 				break;
 			}
+				switch(scrollDirection){
+					case 'u':
+					//if(level.scrollY == 0){level.scrollY = 8;scrollBuffer++;}
+					break;
+
+					case 'd':
+					//if(level.scrollY == 8){level.scrollY = 0;scrollBuffer++;}
+					break;
+
+					case 'l':
+					//if(level.scrollX == 0){level.scrollX = 8;scrollBuffer++;}
+					if(scrollBufferX == 8){scrollBufferX = 0;scrollBuffer++;}
+					break;
+
+					case 'r':
+					if(scrollBufferX == 8){scrollBufferX = 0;scrollBuffer++;}
+					break;
+				}
+			ScrollMap(groundScreen, overheadScreen,scrollBuffer,scrollDirection);
 			scrollIndex++;
 			SetCamera();
+			scrollBufferX++;
 		}	
 		else if(scrollIndex == scrollIndexCheck){
 			scrollIndex = 0;
+			scrollBufferX = 0;
+			scrollBuffer = 0;
 			level.scrolling = false;
 			UnhideSprite(ent[0].sprite,0);
 			playerHide = false;
 			switch(scrollDirection){
 				case 'l':
-				ent[0].local_x-= 16;
+				ent[0].local_x= 210;
+				level.scrollX = 0;
 				ChangeFrame(0, 3);
 				break;
 
 				case 'r':
-				ent[0].local_x+= 8;
+				ent[0].local_x= 0;
+				level.scrollX = 8;
 				ChangeFrame(0, 3);
 				break;
 
@@ -79,12 +118,14 @@ void Scrolling(){
 				break;
 
 				case 'd':
-				ent[0].local_y+= 16;
+				ent[0].local_y+= 8;
 				ChangeFrame(0, 0);
 				break;
 			}
-			
+			SetCamera();
+		
 		}
+		
 	}
 	else{ 
 		for(int i = 0; i < 10; i++){
@@ -92,6 +133,34 @@ void Scrolling(){
 			{
 				level.scrolling =  true;
 				scrollDirection = level.doorDir[i];
+				level.doorCount = 0;
+				switch(level.doorDir[i])
+				{
+					case 'u':
+					room -=3;
+					//level.scrollY = 8;
+					break;
+
+					case 'd':
+					room +=3;
+					//level.scrollY = 0;
+					break;
+
+					case 'l':
+					room--;
+					//level.scrollX = 8;
+					break;
+
+					case 'r':
+					room++;
+					//level.scrollY = 0;
+					break;
+				}
+				//Fill(0,0,0,2);
+				//Fill(0,0,0,1);
+				ScrollPlan(groundScreen,overheadScreen,room);
+				
+				
 			}
 		}
 		switch(scrollDirection){
@@ -238,30 +307,30 @@ void ConstructMap(int type,int map){
 	}
 	if(type == mapPlan){
 
-		unsigned short groundScreen[640];
-		unsigned short overheadScreen[640];
+
+		
 		for(int i = 0; i < 640; i++) overheadScreen[i] = 0;
+		Fill(21,1,1,2);
 		switch(map){
 			
 			default:
-			Fill(21,1,1,2);
-			
 			RoomPlan(0,groundScreen);
-			DoorPlan(5,0, 'u', groundScreen, overheadScreen);
-			DoorPlan(5,17, 'd', groundScreen, overheadScreen);
-			LoadMap(groundScreen,overheadScreen);
-			RoomPlan(0,groundScreen);
-			break;
-
-			case 1:
-			Fill(21,1,1,2);
-			
-			RoomPlan(0,groundScreen);
-			DoorPlan(5,0, 'u', groundScreen, overheadScreen);
+			DoorPlan(13,0, 'u', groundScreen, overheadScreen);
+			DoorPlan(13,17, 'd', groundScreen, overheadScreen);
 			DoorPlan(0,8, 'l', groundScreen, overheadScreen);
 			DoorPlan(27,8, 'r', groundScreen, overheadScreen);
 			LoadMap(groundScreen,overheadScreen);
+			
+			break;
+
+			case 1:			
 			RoomPlan(0,groundScreen);
+			DoorPlan(13,0, 'u', groundScreen, overheadScreen);
+			DoorPlan(13,17, 'd', groundScreen, overheadScreen);
+			DoorPlan(0,8, 'l', groundScreen, overheadScreen);
+			DoorPlan(27,8, 'r', groundScreen, overheadScreen);
+			LoadMap(groundScreen,overheadScreen);
+			room = 4;
 			break;
 
 			case 2:
@@ -281,6 +350,7 @@ void ConstructMap(int type,int map){
 		}
 	}
 }
+
 
 //A Keyboard I'm working on.
 //zelda - context.c

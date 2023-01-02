@@ -5,6 +5,21 @@ echo                 Compiling Textures
 echo =========================================
 
 
+
+#=======================================================================
+#
+#	tileMaps, 1024x1024@4, 
+#	+ palette 256 entries, not compressed
+#	+ 16384 tiles lz77 compressed
+#	Total size: 512 + 115164 = 115676
+#
+#	Time-stamp: 2022-12-28, 22:44:39
+#	Exported by Cearn's GBA Image Transmogrifier, v0.9.2
+#	( http://www.coranac.com/projects/#grit )
+#
+#=======================================================================
+
+
 mkdir assets/gfx/resources
 
 echo compiling sprites...
@@ -17,13 +32,10 @@ for tileset in $(cat assets/misc/data/lists/tex.til)
 do /opt/devkitpro/tools/bin/grit assets/gfx/tilesets/$tileset.png -ff assets/misc/data/grit/$tileset.grit -o assets/gfx/resources/tileSets
 done
 
-
-#/opt/devkitpro/tools/bin/grit assets/gfx/sprites/link.png -ff assets/gfx/sprites/grit/link.grit -o assets/gfx/resources/spriteMaps
-#/opt/devkitpro/tools/bin/grit assets/gfx/sprites/cursor.png -ff assets/gfx/sprites/grit/cursor.grit -o assets/gfx/resources/spriteMaps
-
-
-#/opt/devkitpro/tools/bin/grit assets/gfx/tilesets/house2.png -ff assets/gfx/tilesets/grit/house2.grit -o assets/gfx/resources/tileSets
-#/opt/devkitpro/tools/bin/grit assets/gfx/tilesets/pause.png -ff assets/gfx/tilesets/grit/pause.grit -o assets/gfx/resources/tileSets
+echo compiling tilemaps... 
+for tilemap in $(cat assets/misc/data/lists/tex.map)
+do /opt/devkitpro/tools/bin/grit assets/gfx/tilemaps/$tilemap.png -ff assets/misc/data/grit/$tilemap.grit -o assets/gfx/resources/tileMaps
+done
 
 for source in $(ls assets/gfx/resources | grep .c)
 do mv assets/gfx/resources/$source source/resources
@@ -34,3 +46,4 @@ do mv assets/gfx/resources/$header assets/include/resources
 done
 
 rm assets/gfx/resources -r
+

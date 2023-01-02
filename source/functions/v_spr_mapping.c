@@ -260,13 +260,13 @@ void AssignSprites(){
 
 			default:
 				if(entNo < level.plrNo){
-					if(		entNo == 0) {posX = 188; posY = 24; spriteLayer = 2; sprite = mainChar; frame = 0; state = state_idle;}
+					if(		entNo == 0) {posX = 108; posY = 60; spriteLayer = 2; sprite = mainChar; frame = 0; state = state_idle;}
 					else if(entNo == 1) {posX = 172; posY = 24; spriteLayer = 0; sprite = mainChar; frame = 2; state = state_frozen;}
 					else if(entNo == 2) {posX = 156; posY = 24; spriteLayer = 2; sprite = mainChar; frame = 0; state = state_idle;}
 					else if(entNo == 3) {posX = 140; posY = 24; spriteLayer = 2; sprite = mainChar; frame = 0; state = state_idle;}
 				}
 				else if(entNo >= level.plrNo){
-					if(entNo == 1 + level.plrNo - 1) {posX = 188; posY = 98; spriteLayer = 2; sprite = mainChar; frame = 6; state = state_idle; pal = 4; }
+					if(entNo == 1 + level.plrNo - 1) {posX = 120; posY = 120; spriteLayer = 2; sprite = mainChar; frame = 6; state = state_idle; pal = 4; }
 					else if(entNo == 2 + level.plrNo - 1) {posX = 172; posY = 98; spriteLayer = 2; sprite = mainChar; frame = 6; state = state_idle; pal = 4;}
 					else if(entNo == 3 + level.plrNo - 1) {posX = 156; posY = 98; spriteLayer = 2; sprite = mainChar; frame = 6; state = state_idle; pal = 4;}
 					else if(entNo == 4 + level.plrNo - 1) {posX = 140; posY = 98; spriteLayer = 2; sprite = mainChar; frame = 6; state = state_idle; pal = 4;}

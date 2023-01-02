@@ -61,7 +61,9 @@ LIBDIRS	:=	$(LIBGBA)
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
- 
+
+
+
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
  
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
@@ -112,6 +114,7 @@ export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
  
 #---------------------------------------------------------------------------------
 $(BUILD):
+	
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
